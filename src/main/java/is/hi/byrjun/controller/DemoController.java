@@ -21,7 +21,7 @@ public class DemoController {
 
     /**
      * Aðferðin segir viðmótinu að birta skránna demo.jsp.
-     * @return slóðin á skránna demo.jsp
+     * @return slóðin á skránna demo.jsp 
      */
     // Þar sem klasinn hefur slóðina "/demo", er þessi slóð "/demo/page"
     @RequestMapping("/page")
