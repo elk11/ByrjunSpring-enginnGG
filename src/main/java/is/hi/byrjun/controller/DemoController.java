@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DemoController {
 
     /**
-     * Aðferðin segir viðmótinu að birta skránna demo.jsp.
-     * @return slóðin á skránna demo.jsp 
+     * Birtir demo.jsp í viðmótinu.
+     * Þar er textinn "Sýnidæmi" birtur.
+     *
+     * @return slóðin á skránna demo.jsp
      */
     // Þar sem klasinn hefur slóðina "/demo", er þessi slóð "/demo/page"
     @RequestMapping("/page")
@@ -31,21 +33,36 @@ public class DemoController {
     }
 
     /**
+     * Birtir synaNotandi.jsp í viðmótinu.
+     * Þar er textinn "Góðan daginn notandi" birtur.
      *
-     * @param model
-     * @return
+     * @param model modelið sem er notað til að færa gögnin frá controller til viðmóts
+     * @return slóðin á skránna synaNotandi.jsp
      */
     @RequestMapping("/notandi")
     public String notandi(Model model){
-        model.addAttribute("nafn", "test");
+        model.addAttribute("nafn", "notandi");
         return "demo/synaNotandi";
     }
 
+    /**
+     * Birtir hvadaNotandi.jsp í viðmótinu.
+     * Þar er notandi beðinn um að sla inn nafnið sitt.
+     *
+     * @return slóðin á skránna hvadaNotandi.jsp
+     */
     @RequestMapping("/spyrjaNotanda")
     public String spyrjaNotandi(){
         return "demo/hvadaNotandi";
     }
 
+    /**
+     * Notar POST til að setja nafnið úr hvadaNotandi í synaNotandi.
+     *
+     * @param nafn strengurinn sem inniheldur það sem notandi sló inn í spyrjaNotanda forminu
+     * @param model modelið sem er notað til að færa gögnin milli controller og viðmóts
+     * @return slóðin á skránna synaNotandi.jsp
+     */
     @RequestMapping(value="/hver", method=RequestMethod.POST)
     public String hver(@RequestParam(value="nafn", required=false) String nafn, ModelMap model){
         model.addAttribute("nafn", nafn);
